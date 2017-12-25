@@ -11,9 +11,20 @@ public class Time {
 
     }
 
+    public int getTimeHour() {
+        this.cal = getCal();
+        return this.cal.get(Calendar.HOUR_OF_DAY);
+    }
+
     public int getTimeMinute() {
         this.cal = getCal();
-        return this.cal.get(12);
+        return this.cal.get(Calendar.MINUTE);
+    }
+
+    public int getDayOfTheWeek() {
+        this.cal = getCal();
+        int dayOfTheWeek = this.cal.get(Calendar.DAY_OF_WEEK);
+        return dayOfTheWeek;
     }
 
     public Calendar getCal() {

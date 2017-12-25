@@ -11,7 +11,6 @@ public class MainScheduler extends PluginTask<AutomaticTasks> {
 
     public void onRun (int currentTick) {
         int min = this.owner.getTime().getTimeMinute();
-        System.out.println(min);
         switch (min) {
             case 10:
             case 20:

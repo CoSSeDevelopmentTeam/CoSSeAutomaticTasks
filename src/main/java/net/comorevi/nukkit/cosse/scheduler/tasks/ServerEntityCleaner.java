@@ -1,4 +1,4 @@
-package net.comorevi.nukkit.cosse.tasks;
+package net.comorevi.nukkit.cosse.scheduler.tasks;
 
 import net.comorevi.nukkit.cosse.AutomaticTasks;
 import entitiescleaner.cleaner.CleanerManager;
@@ -9,7 +9,7 @@ public class ServerEntityCleaner {
     private AutomaticTasks plugin;
 
     public ServerEntityCleaner (AutomaticTasks plugin) {
-        plugin = plugin;
+        this.plugin = plugin;
         CleanerManager.addCleaner(new EntityCleaner());
     }
 
