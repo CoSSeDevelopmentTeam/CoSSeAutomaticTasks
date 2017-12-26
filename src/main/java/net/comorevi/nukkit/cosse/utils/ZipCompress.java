@@ -89,7 +89,7 @@ public class ZipCompress {
         outZip.setLevel(5);
 
         // 文字コードを指定
-        //outZip.setEncoding(enc);
+        outZip.setComment(enc);
         try {
 
             // ZIPエントリ作成

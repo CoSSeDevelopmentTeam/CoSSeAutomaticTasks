@@ -3,11 +3,13 @@ package net.comorevi.nukkit.cosse;
 import cn.nukkit.plugin.PluginBase;
 import net.comorevi.nukkit.cosse.scheduler.MainScheduler;
 import net.comorevi.nukkit.cosse.scheduler.tasks.*;
+import net.comorevi.nukkit.cosse.utils.ConfigUtil;
 import net.comorevi.nukkit.cosse.utils.Time;
 import net.comorevi.nukkit.cosse.utils.ZipCompress;
 
 public class AutomaticTasks extends PluginBase {
 
+    ConfigUtil configUtil;
     Time time;
     AutoBackUp autoBackUp;
     ZipCompress zipCompress;
@@ -17,6 +19,7 @@ public class AutomaticTasks extends PluginBase {
 
     public void onEnable () {
         this.getDataFolder().mkdir();
+        this.configUtil = new ConfigUtil(this);
         this.time = new Time(this);
         this.autoBackUp = new AutoBackUp(this);
         this.zipCompress = new ZipCompress(this);
@@ -26,12 +29,12 @@ public class AutomaticTasks extends PluginBase {
         this.getServer().getScheduler().scheduleRepeatingTask(new MainScheduler(this), 1200);
     }
 
-    public Time getTime() {
-        return this.time;
+    public ConfigUtil getConfigUtil() {
+        return configUtil;
     }
 
-    public ZipCompress getZipCompress() {
-        return zipCompress;
+    public Time getTime() {
+        return this.time;
     }
 
     public ServerEntityCleaner getServerEntityCleaner() {
