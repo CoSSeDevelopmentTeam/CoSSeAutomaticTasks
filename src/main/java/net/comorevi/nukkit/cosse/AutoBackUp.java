@@ -33,13 +33,10 @@ public class AutoBackUp {
 
     public boolean isBackUpDay() {
         switch (this.dayOfTheWeek) {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
+            case 1: //月曜日
+            case 3: //水曜日
+            case 5: //金曜日
+            case 7: //日曜日
                 return true;
                 default:
                     return false;
