@@ -6,7 +6,7 @@
 
     <groupId>net.comorevi</groupId>
     <artifactId>CoSSeAutomaticTasks</artifactId>
-    <version>1.1-Beta</version>
+    <version>1.1-SNAPSHOT</version>
     <build>
         <plugins>
             <plugin>

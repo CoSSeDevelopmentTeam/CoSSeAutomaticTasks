@@ -16,24 +16,21 @@ public class AutoRecreateSourceWorld {
     }
 
     public void reCreateSourceWorld () {
-        if (existsSourceWorld()) {
-            plugin.getLogger().info("資源ワールド削除");
-            //ワールドディレクトリ削除
-            plugin.getLogger().info(plugin.getServer().getFilePath().toString() + "worlds\\source");
-            deleteOldSourceWorld(new File(plugin.getServer().getFilePath().toString() + "worlds\\source"));
-            //ワールド生成
-            plugin.getLogger().info("資源ワールド生成");
-            plugin.getServer().generateLevel("source", 404, Generator.getGenerator("GEN_FOREST"));
-            //読み込み
-            plugin.getLogger().info("資源ワールド読み込み");
-            plugin.getServer().loadLevel("source");
-        } else {
-            //ワールド生成
-            plugin.getLogger().info("資源ワールド生成");
-            plugin.getServer().generateLevel("source", 404, Generator.getGenerator("GEN_FOREST"));
-            //読み込み
-            plugin.getLogger().info("資源ワールド読み込み");
-            plugin.getServer().loadLevel("source");
+        if (isFirstServerStartOfDay()) {
+            if (existsSourceWorld()) {
+                //ワールドディレクトリ削除
+                plugin.getLogger().info(plugin.getServer().getFilePath().toString() + "worlds\\source");
+                deleteOldSourceWorld(new File(plugin.getServer().getFilePath().toString() + "worlds\\source"));
+                //ワールド生成
+                plugin.getServer().generateLevel("source", 404, Generator.getGenerator(getGeneratorName(dayOfTheWeek)));
+                //読み込み
+                plugin.getServer().loadLevel("source");
+            } else {
+                //ワールド生成
+                plugin.getServer().generateLevel("source", 404, Generator.getGenerator(getGeneratorName(dayOfTheWeek)));
+                //読み込み
+                plugin.getServer().loadLevel("source");
+            }
         }
     }
 
@@ -54,24 +51,31 @@ public class AutoRecreateSourceWorld {
         worldDirectory.delete();
     }
 
-    public int getWorldType (int dayOfTheWeek) {
+    public String getGeneratorName (int dayOfTheWeek) {
         switch (dayOfTheWeek) {
             case 1:
-                return 1;
-            case 2:
-                return 2;
             case 3:
-                return 3;
-            case 4:
-                return 4;
             case 5:
-                return 5;
+                return "GEN_FOREST";
+            case 2:
+                return "GEN_DESERT";
+            case 4:
+                return "GEN_SWAMP";
             case 6:
-                return 6;
+                return "GEN_ICE_PLAINS";
             case 7:
-                return 7;
+                return "GEN_JUNGLE";
             default:
-                return 1;
+                return "GEN_FOREST";
+        }
+    }
+
+    public boolean isFirstServerStartOfDay() {
+        int dayOfHour = plugin.getTime().getTimeHour();
+        if((dayOfHour == 0)) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
