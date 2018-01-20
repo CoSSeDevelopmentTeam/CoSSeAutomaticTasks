@@ -11,7 +11,7 @@ public class MainGenerator {
 
     public MainGenerator (AutomaticTasks plugin) {
         this.plugin = plugin;
-        Generator.addGenerator(WorldGenForest.getGenerator("GEN_FOREST"), "GEN_FOREST", 0);
+        Generator.addGenerator(WorldGenForest.class, "GEN_FOREST", Generator.TYPE_INFINITE);
     }
 
 }
