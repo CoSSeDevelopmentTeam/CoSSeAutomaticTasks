@@ -1,7 +1,7 @@
 name: CoSSeAutomaticTasks
 main: net.comorevi.nukkit.cosse.AutomaticTasks
-version: 1.0
-load: POSTWORLD
+version: 1.1
+load: STARTUP
 author: popkechupki
 api: ["1.0.0"]
 description: "スケジューラーを用いた機能がこのおプラグインで実装されます。"

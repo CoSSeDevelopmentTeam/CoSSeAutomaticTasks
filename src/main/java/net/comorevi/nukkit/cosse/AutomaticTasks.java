@@ -1,6 +1,7 @@
 package net.comorevi.nukkit.cosse;
 
 import cn.nukkit.plugin.PluginBase;
+import net.comorevi.nukkit.cosse.level.MainGenerator;
 import net.comorevi.nukkit.cosse.scheduler.MainScheduler;
 import net.comorevi.nukkit.cosse.scheduler.tasks.*;
 import net.comorevi.nukkit.cosse.utils.ConfigUtil;
@@ -12,6 +13,8 @@ public class AutomaticTasks extends PluginBase {
     ConfigUtil configUtil;
     Time time;
     AutoBackUp autoBackUp;
+    MainGenerator mainGenerator;
+    AutoRecreateSourceWorld autoRecreateSourceWorld;
     ZipCompress zipCompress;
     ServerEntityCleaner serverEntityCleaner;
     ServerRestart serverRestart;
@@ -22,6 +25,8 @@ public class AutomaticTasks extends PluginBase {
         this.configUtil = new ConfigUtil(this);
         this.time = new Time(this);
         this.autoBackUp = new AutoBackUp(this);
+        this.mainGenerator = new MainGenerator(this);
+        this.autoRecreateSourceWorld = new AutoRecreateSourceWorld(this);
         this.zipCompress = new ZipCompress(this);
         this.serverEntityCleaner = new ServerEntityCleaner(this);
         this.serverRestart = new ServerRestart(this);
