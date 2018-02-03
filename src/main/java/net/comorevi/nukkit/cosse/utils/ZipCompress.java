@@ -59,7 +59,7 @@ public class ZipCompress {
 
         //add start 空フォルダも圧縮するように
         if(files.length == 0){
-            archive(outZip, baseFile, targetFile, targetFile.getAbsolutePath().replace(baseFile.getParent(), "").substring(1) + "\\", "Shift_JIS");
+            archive(outZip, baseFile, targetFile, targetFile.getAbsolutePath().replace(baseFile.getParent(), "").substring(1) + File.separator, "Shift_JIS");
         }
         //add end
             for (File f : files) {

@@ -1,0 +1,7 @@
+name: CoSSeAutomaticTasks
+main: net.comorevi.nukkit.cosse.AutomaticTasks
+version: 1.1
+load: POSTWORLD
+author: popkechupki
+api: ["1.0.0"]
+description: "CosmoSunriseServerのためのSchedulerを用いるシステムや、定期的に自動で実行するシステムなどが組み込まれています。"

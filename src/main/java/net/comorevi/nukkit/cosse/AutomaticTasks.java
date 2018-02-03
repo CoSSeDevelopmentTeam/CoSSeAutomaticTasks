@@ -17,6 +17,7 @@ public class AutomaticTasks extends PluginBase {
     AutoRecreateSourceWorld autoRecreateSourceWorld;
     ZipCompress zipCompress;
     ServerEntityCleaner serverEntityCleaner;
+    ServerKickPlayers serverKickPlayers;
     ServerRestart serverRestart;
     ServerRestartMessage serverRestartMessage;
 
@@ -29,6 +30,7 @@ public class AutomaticTasks extends PluginBase {
         this.autoRecreateSourceWorld = new AutoRecreateSourceWorld(this);
         this.zipCompress = new ZipCompress(this);
         this.serverEntityCleaner = new ServerEntityCleaner(this);
+        this.serverKickPlayers = new ServerKickPlayers(this);
         this.serverRestart = new ServerRestart(this);
         this.serverRestartMessage = new ServerRestartMessage(this);
         this.getServer().getScheduler().scheduleRepeatingTask(new MainScheduler(this), 1200);
@@ -44,6 +46,10 @@ public class AutomaticTasks extends PluginBase {
 
     public ServerEntityCleaner getServerEntityCleaner() {
         return serverEntityCleaner;
+    }
+
+    public ServerKickPlayers getServerKickPlayers() {
+        return serverKickPlayers;
     }
 
     public ServerRestart getServerRestart() {

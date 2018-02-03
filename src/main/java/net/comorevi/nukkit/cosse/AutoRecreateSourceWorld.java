@@ -3,6 +3,12 @@ package net.comorevi.nukkit.cosse;
 import cn.nukkit.level.generator.Generator;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+import static com.sun.org.apache.xalan.internal.lib.ExsltStrings.split;
 
 public class AutoRecreateSourceWorld {
 
@@ -17,25 +23,25 @@ public class AutoRecreateSourceWorld {
 
     public void reCreateSourceWorld () {
         if (isFirstServerStartOfDay()) {
+            long seed = System.currentTimeMillis();
             if (existsSourceWorld()) {
                 //ワールドディレクトリ削除
-                plugin.getLogger().info(plugin.getServer().getFilePath().toString() + "worlds\\source");
-                deleteOldSourceWorld(new File(plugin.getServer().getFilePath().toString() + "worlds\\source"));
+                deleteOldSourceWorld(new File(plugin.getServer().getFilePath().toString() + "worlds" + File.separator + "source"));
                 //ワールド生成
-                plugin.getServer().generateLevel("source", 404, Generator.getGenerator(getGeneratorName(dayOfTheWeek)));
-                //読み込み
+                plugin.getServer().generateLevel("source", seed, Generator.getGenerator(getGeneratorName(dayOfTheWeek)));
+                //ワールド読み込み
                 plugin.getServer().loadLevel("source");
             } else {
                 //ワールド生成
-                plugin.getServer().generateLevel("source", 404, Generator.getGenerator(getGeneratorName(dayOfTheWeek)));
-                //読み込み
+                plugin.getServer().generateLevel("source", seed, Generator.getGenerator(getGeneratorName(dayOfTheWeek)));
+                //ワールド読み込み
                 plugin.getServer().loadLevel("source");
             }
         }
     }
 
     public boolean existsSourceWorld () {
-        if (new File(plugin.getServer().getFilePath().toString() + "worlds\\source").exists()) {
+        if (new File(plugin.getServer().getFilePath().toString() + "worlds" + File.separator + "source").exists()) {
             return true;
         } else {
             return false;
@@ -71,11 +77,14 @@ public class AutoRecreateSourceWorld {
     }
 
     public boolean isFirstServerStartOfDay() {
+        /*
         int dayOfHour = plugin.getTime().getTimeHour();
-        if((dayOfHour == 0)) {
+        if((dayOfHour == 1)) {
             return true;
         } else {
             return false;
         }
+        */
+        return true;
     }
 }

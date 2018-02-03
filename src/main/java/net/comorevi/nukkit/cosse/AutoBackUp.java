@@ -2,6 +2,8 @@ package net.comorevi.nukkit.cosse;
 
 import net.comorevi.nukkit.cosse.utils.ZipCompress;
 
+import java.io.File;
+
 public class AutoBackUp {
 
     AutomaticTasks automaticTasks;
@@ -16,7 +18,7 @@ public class AutoBackUp {
     public void backUp() {
         if (isBackUpDay()) {
             if (isFirstServerStartOfDay()) {
-                String dataFilePath = automaticTasks.getConfigUtil().getDropboxDir() + "\\backup-" + String.valueOf(this.dayOfTheWeek) + ".zip";
+                String dataFilePath = automaticTasks.getConfigUtil().getDropboxDir() + File.separator + "backup-" + String.valueOf(this.dayOfTheWeek) + "-" + String.valueOf(automaticTasks.getTime().getTimeHour()) + ".zip";
                 ZipCompress.compressDirectory(dataFilePath, automaticTasks.getServer().getFilePath());
             }
         }
@@ -24,7 +26,7 @@ public class AutoBackUp {
 
     public boolean isFirstServerStartOfDay() {
         int dayOfHour = automaticTasks.getTime().getTimeHour();
-        if(dayOfHour == 00) {
+        if((dayOfHour == 0) || (dayOfHour == 12)) {
             return true;
         } else {
             return false;
@@ -34,8 +36,11 @@ public class AutoBackUp {
     public boolean isBackUpDay() {
         switch (this.dayOfTheWeek) {
             case 1: //月曜日
+            case 2:
             case 3: //水曜日
+            case 4:
             case 5: //金曜日
+            case 6:
             case 7: //日曜日
                 return true;
                 default:

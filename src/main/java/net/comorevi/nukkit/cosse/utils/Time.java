@@ -21,6 +21,11 @@ public class Time {
         return this.cal.get(Calendar.MINUTE);
     }
 
+    public int getTimeSecond() {
+        this.cal = getCal();
+        return this.cal.get(Calendar.SECOND);
+    }
+
     public int getDayOfTheWeek() {
         this.cal = getCal();
         int dayOfTheWeek = this.cal.get(Calendar.DAY_OF_WEEK);

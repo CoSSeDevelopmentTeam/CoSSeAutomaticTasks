@@ -3,6 +3,8 @@ package net.comorevi.nukkit.cosse.scheduler;
 import cn.nukkit.scheduler.PluginTask;
 import net.comorevi.nukkit.cosse.AutomaticTasks;
 
+import static oshi.util.Util.sleep;
+
 public class MainScheduler extends PluginTask<AutomaticTasks> {
 
     public MainScheduler (AutomaticTasks owner) {
@@ -11,6 +13,7 @@ public class MainScheduler extends PluginTask<AutomaticTasks> {
 
     public void onRun (int currentTick) {
         int min = this.owner.getTime().getTimeMinute();
+        int sec = this.owner.getTime().getTimeSecond();
         switch (min) {
             case 10:
             case 20:
@@ -26,6 +29,8 @@ public class MainScheduler extends PluginTask<AutomaticTasks> {
                 this.owner.getServerRestartMessage().sendServerRestartMessage(min);
                 break;
             case 59:
+                this.owner.getServerKickPlayers().kickPlayers();
+                sleep((60 - sec) * 1000);
                 this.owner.getServerRestart().stopCoSSe();
                 break;
         }
