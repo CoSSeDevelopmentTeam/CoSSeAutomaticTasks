@@ -1,7 +1,7 @@
-package net.comorevi.nukkit.cosse.scheduler;
+package net.comorevi.nukkit.automatictasks.scheduler;
 
 import cn.nukkit.scheduler.PluginTask;
-import net.comorevi.nukkit.cosse.AutomaticTasks;
+import net.comorevi.nukkit.automatictasks.AutomaticTasks;
 
 import static oshi.util.Util.sleep;
 

@@ -1,6 +1,6 @@
-package net.comorevi.nukkit.cosse.utils;
+package net.comorevi.nukkit.automatictasks.utils;
 
-import net.comorevi.nukkit.cosse.AutomaticTasks;
+import net.comorevi.nukkit.automatictasks.AutomaticTasks;
 import cn.nukkit.utils.Config;
 
 import java.io.File;

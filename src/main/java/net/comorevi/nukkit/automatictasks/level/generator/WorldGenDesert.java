@@ -1,4 +1,4 @@
-package net.comorevi.nukkit.cosse.level.generator;
+package net.comorevi.nukkit.automatictasks.level.generator;
 
 import cn.nukkit.block.*;
 import cn.nukkit.level.ChunkManager;
@@ -14,22 +14,17 @@ import cn.nukkit.math.Vector3;
 
 import java.util.*;
 
-public abstract class WorldGenForest extends Generator {
+public class WorldGenDesert extends Generator {
 
     /**
      * biome IDs
      */
-    public static final int ROOFED_FOREST = 29;
-    public static final int ROOFED_FOREST_M = 157;
-
-    public static final int FOREST = 4;
-    public static final int TAIGA = 5;
-    public static final int RIVER = 7;
-    public static final int BIRCH_FOREST = 27;
+    public static final int DESERT = 2;
 
     public static final int MAX_BIOMES = 256;
 
-    public static final String GENERATOR_NAME = "GEN_FOREST";
+    public static final String GENERATOR_NAME = "GEN_DESERT";
+    public static final int GENERATOR_ID = 2;
     private Object[] options;
     private ChunkManager level;
     private Random random;
@@ -59,11 +54,16 @@ public abstract class WorldGenForest extends Generator {
     protected float temperature = 0.5F;
     protected int grassColor = 0;
 
-    public WorldGenForest() {
+    public WorldGenDesert() {
         this(new HashMap<>());
     }
 
-    public WorldGenForest(Map<String, Object> options) {
+    @Override
+    public int getId() {
+        return GENERATOR_ID;
+    }
+
+    public WorldGenDesert(Map<String, Object> options) {
         //Nothing here. Just used for future update.
     }
 
@@ -116,13 +116,7 @@ public abstract class WorldGenForest extends Generator {
         this.selector = new BiomeSelector(this.nukkitRandom, Biome.getBiome(Biome.FOREST));
         this.heightOffset = random.nextRange(-5, 3);
 
-        this.selector.addBiome(Biome.getBiome(FOREST));
-        this.selector.addBiome(Biome.getBiome(TAIGA));
-        this.selector.addBiome(Biome.getBiome(RIVER));
-        this.selector.addBiome(Biome.getBiome(BIRCH_FOREST));
-
-        this.selector.addBiome(Biome.getBiome(ROOFED_FOREST));
-        this.selector.addBiome(Biome.getBiome(ROOFED_FOREST_M));
+        this.selector.addBiome(Biome.getBiome(DESERT));
 
         this.selector.recalculate();
 

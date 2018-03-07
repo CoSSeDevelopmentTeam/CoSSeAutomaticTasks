@@ -1,7 +1,7 @@
-package net.comorevi.nukkit.cosse.utils;
+package net.comorevi.nukkit.automatictasks.utils;
 
 import java.util.Calendar;
-import net.comorevi.nukkit.cosse.AutomaticTasks;
+import net.comorevi.nukkit.automatictasks.AutomaticTasks;
 
 public class Time {
 
@@ -30,6 +30,18 @@ public class Time {
         this.cal = getCal();
         int dayOfTheWeek = this.cal.get(Calendar.DAY_OF_WEEK);
         return dayOfTheWeek;
+    }
+    
+    public int getDayOfTheMonth() {
+        this.cal = getCal();
+        int dayOfTheMonth = this.cal.get(Calendar.DATE);
+        return dayOfTheMonth;
+    }
+    
+    public int getLastDayOfMonth() {
+        this.cal = getCal();
+        int lastDayOfMonth = cal.getActualMaximum(Calendar.DATE);
+        return lastDayOfMonth;
     }
 
     public Calendar getCal() {

@@ -1,8 +1,6 @@
-package net.comorevi.nukkit.cosse.scheduler.tasks;
+package net.comorevi.nukkit.automatictasks.scheduler.tasks;
 
-import net.comorevi.nukkit.cosse.AutomaticTasks;
-
-import java.util.UUID;
+import net.comorevi.nukkit.automatictasks.AutomaticTasks;
 
 public class ServerKickPlayers {
 

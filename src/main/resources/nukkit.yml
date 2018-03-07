@@ -1,6 +1,6 @@
 name: CoSSeAutomaticTasks
-main: net.comorevi.nukkit.cosse.AutomaticTasks
-version: 1.1
+main: net.comorevi.nukkit.automatictasks.AutomaticTasks
+version: 1.2
 load: POSTWORLD
 author: popkechupki
 api: ["1.0.0"]

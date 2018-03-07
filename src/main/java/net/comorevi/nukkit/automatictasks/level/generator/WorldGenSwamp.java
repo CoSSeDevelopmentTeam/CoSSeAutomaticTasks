@@ -1,4 +1,4 @@
-package net.comorevi.nukkit.cosse.level.generator;
+package net.comorevi.nukkit.automatictasks.level.generator;
 
 import cn.nukkit.block.*;
 import cn.nukkit.level.ChunkManager;
@@ -14,16 +14,17 @@ import cn.nukkit.math.Vector3;
 
 import java.util.*;
 
-public abstract class WorldGenJungle extends Generator {
+public class WorldGenSwamp extends Generator {
 
     /**
      * biome IDs
      */
-    public static final int JUNGLE = 21;
+    public static final int SWAMP = 6;
 
     public static final int MAX_BIOMES = 256;
 
-    public static final String GENERATOR_NAME = "GEN_JUNGLE";
+    public static final String GENERATOR_NAME = "GEN_SWAMP";
+    public static final int GENERATOR_ID = 6;
     private Object[] options;
     private ChunkManager level;
     private Random random;
@@ -53,11 +54,16 @@ public abstract class WorldGenJungle extends Generator {
     protected float temperature = 0.5F;
     protected int grassColor = 0;
 
-    public WorldGenJungle() {
+    public WorldGenSwamp() {
         this(new HashMap<>());
     }
 
-    public WorldGenJungle(Map<String, Object> options) {
+    @Override
+    public int getId() {
+        return GENERATOR_ID;
+    }
+
+    public WorldGenSwamp(Map<String, Object> options) {
         //Nothing here. Just used for future update.
     }
 
@@ -110,7 +116,7 @@ public abstract class WorldGenJungle extends Generator {
         this.selector = new BiomeSelector(this.nukkitRandom, Biome.getBiome(Biome.FOREST));
         this.heightOffset = random.nextRange(-5, 3);
 
-        this.selector.addBiome(Biome.getBiome(JUNGLE));
+        this.selector.addBiome(Biome.getBiome(SWAMP));
 
         this.selector.recalculate();
 

@@ -1,6 +1,6 @@
-package net.comorevi.nukkit.cosse.scheduler.tasks;
+package net.comorevi.nukkit.automatictasks.scheduler.tasks;
 
-import net.comorevi.nukkit.cosse.AutomaticTasks;
+import net.comorevi.nukkit.automatictasks.AutomaticTasks;
 import entitiescleaner.cleaner.CleanerManager;
 import entitiescleaner.cleaner.EntityCleaner;
 

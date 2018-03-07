@@ -1,4 +1,4 @@
-package net.comorevi.nukkit.cosse.level.generator;
+package net.comorevi.nukkit.automatictasks.level.generator;
 
 import cn.nukkit.block.*;
 import cn.nukkit.level.ChunkManager;
@@ -14,31 +14,39 @@ import cn.nukkit.math.Vector3;
 
 import java.util.*;
 
-public abstract class WorldGenIcePlains extends Generator {
+public class WorldGenJungle extends Generator {
 
     /**
      * biome IDs
      */
-    public static final int ICE_PLAINS = 12;
+    public static final int JUNGLE = 21;
 
     public static final int MAX_BIOMES = 256;
 
-    public static final String GENERATOR_NAME = "GEN_ICE_PLAINS";
-    private Object[] options;
+    public static final String GENERATOR_NAME = "GEN_JUNGLE";
+    public static final int GENERATOR_ID = 21;
+    private final List<Populator> populators = new ArrayList<>();
+
     private ChunkManager level;
+
     private Random random;
     private NukkitRandom nukkitRandom;
-    private final List<Populator> populators = new ArrayList<>();
-    private final List<Populator> generationPopulators = new ArrayList<>();
+
     private long localSeed1;
     private long localSeed2;
+
+    private final List<Populator> generationPopulators = new ArrayList<>();
+
     private Simplex noiseSeaFloor;
     private Simplex noiseLand;
     private Simplex noiseMountains;
     private Simplex noiseBaseGround;
     private Simplex noiseRiver;
+
     private BiomeSelector selector;
+
     private int heightOffset;
+
     private final int seaHeight = 64;
     private final int seaFloorHeight = 48;
     private final int beathStartHeight = 60;
@@ -49,15 +57,22 @@ public abstract class WorldGenIcePlains extends Generator {
     private final int mountainHeight = 13;
     private final int basegroundHeight = 3;
     private int waterColor = 16777215;
+    //private boolean enableSnow; Coming soon
+
     protected float rainfall = 0.5F;
     protected float temperature = 0.5F;
     protected int grassColor = 0;
 
-    public WorldGenIcePlains() {
+    public WorldGenJungle() {
         this(new HashMap<>());
     }
 
-    public WorldGenIcePlains(Map<String, Object> options) {
+    @Override
+    public int getId() {
+        return GENERATOR_ID;
+    }
+
+    public WorldGenJungle(Map<String, Object> options) {
         //Nothing here. Just used for future update.
     }
 
@@ -68,7 +83,7 @@ public abstract class WorldGenIcePlains extends Generator {
 
     @Override
     public String getName() {
-        return GENERATOR_NAME;
+        return "normal";
     }
 
     @Override
@@ -110,7 +125,7 @@ public abstract class WorldGenIcePlains extends Generator {
         this.selector = new BiomeSelector(this.nukkitRandom, Biome.getBiome(Biome.FOREST));
         this.heightOffset = random.nextRange(-5, 3);
 
-        this.selector.addBiome(Biome.getBiome(ICE_PLAINS));
+        this.selector.addBiome(Biome.getBiome(JUNGLE));
 
         this.selector.recalculate();
 
@@ -145,7 +160,7 @@ public abstract class WorldGenIcePlains extends Generator {
     }
 
     @Override
-    public void generateChunk(int chunkX, int chunkZ) {
+    public void generateChunk(final int chunkX, final int chunkZ) {
         this.nukkitRandom.setSeed(chunkX * localSeed1 ^ chunkZ * localSeed2 ^ this.level.getSeed());
 
         double[][] seaFloorNoise = Generator.getFastNoise2D(this.noiseSeaFloor, 16, 16, 4, chunkX * 16, 0, chunkZ * 16);
@@ -237,11 +252,9 @@ public abstract class WorldGenIcePlains extends Generator {
                         }
                     }
                 }
-                chunk.setBiomeId(genx, genz, biome.getId());
-                //biome color
-                //todo: smooth chunk color
-                int biomecolor = biome.getColor();
-                chunk.setBiomeColor(genx, genz, (biomecolor >> 16), (biomecolor >> 8) & 0xff, (biomecolor & 0xff));
+                int biomeColorAndId = biome.getColor() + (biome.getId() << 24);
+                //chunk.setBiomeIdAndColor(genx, genz, biomeColorAndId);
+
                 //generating
                 int generateHeight = genyHeight > seaHeight ? genyHeight : seaHeight;
                 for (int geny = 0; geny <= generateHeight; geny++) {

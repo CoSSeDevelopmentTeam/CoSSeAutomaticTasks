@@ -1,6 +1,6 @@
-package net.comorevi.nukkit.cosse;
+package net.comorevi.nukkit.automatictasks;
 
-import net.comorevi.nukkit.cosse.utils.ZipCompress;
+import net.comorevi.nukkit.automatictasks.utils.ZipCompress;
 
 import java.io.File;
 

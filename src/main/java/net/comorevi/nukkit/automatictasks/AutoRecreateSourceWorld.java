@@ -1,14 +1,8 @@
-package net.comorevi.nukkit.cosse;
+package net.comorevi.nukkit.automatictasks;
 
 import cn.nukkit.level.generator.Generator;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-
-import static com.sun.org.apache.xalan.internal.lib.ExsltStrings.split;
 
 public class AutoRecreateSourceWorld {
 
@@ -26,13 +20,16 @@ public class AutoRecreateSourceWorld {
             long seed = System.currentTimeMillis();
             if (existsSourceWorld()) {
                 //ワールドディレクトリ削除
+                plugin.getServer().getLogger().info("delete");
                 deleteOldSourceWorld(new File(plugin.getServer().getFilePath().toString() + "worlds" + File.separator + "source"));
                 //ワールド生成
+                plugin.getServer().getLogger().info("create");
                 plugin.getServer().generateLevel("source", seed, Generator.getGenerator(getGeneratorName(dayOfTheWeek)));
                 //ワールド読み込み
                 plugin.getServer().loadLevel("source");
             } else {
                 //ワールド生成
+                plugin.getServer().getLogger().info("create");
                 plugin.getServer().generateLevel("source", seed, Generator.getGenerator(getGeneratorName(dayOfTheWeek)));
                 //ワールド読み込み
                 plugin.getServer().loadLevel("source");
